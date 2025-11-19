@@ -3,90 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estrattore Casuale di Numeri (Bootstrap)</title>
+    <title>Calendario dell'Avvento Digitale</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .centered-container {
+        .full-height {
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        .risultato-box {
-            font-size: 5em;
+        /* Stile per il countdown (rosso per urgenza) */
+        #countdown-timer {
+            font-size: 1.5em;
+            color: #dc3545;
             font-weight: bold;
-            color: #dc3545; 
-            padding: 20px 30px;
-            margin-bottom: 25px;
-            border: 3px solid #dc3545;
-            border-radius: 200px;
-            display: inline-block;
-            min-width: 150px;
-            height: 100px;
-            line-height: 50px;
-            background-color: #fff;
-            user-select: none;
+        }
+        #titolo {
+            font-size: 1.5em;
+            color: #dc3545;
+            font-weight: bold; 
         }
     </style>
 </head>
 <body>
 
-    <div class="centered-container container">
-        <div class="card shadow-lg p-4 col-12 col-md-8 col-lg-6">
-            <div class="card-body text-center">
-                <h1 class="card-title text-primary mb-4">🎲 Estrattore Casuale di Numeri</h1>
+    <div class="d-flex flex-column justify-content-center align-items-center text-center bg-light full-height">
 
-                <div class="mb-4">
-                    <span id="risultato" class="risultato-box">?</span>
+        <header class="mt-4 mb-5">
+            <div id="titolo" >CALENDARIO DELL'AVVENTO</div>
+        </header>
+
+        <header class="p-4">
+            <h1 id="titoloo" class="display-4 text-success">LA PAROLA DEL GIORNO È</h1>
+        </header>
+
+        <main class="container mt-2 d-flex justify-content-center">
+            
+            <div class="card shadow-lg p-5 mx-2">
+                <h2 id="parola-del-giorno" class="display-3 text-secondary fw-bold">Caricamento...</h2>
+                <hr class="my-4">
+                
+                <div id="countdown-container">
+                    <p class="lead text-muted mb-2" id="countdown-message">Inizio evento in:</p>
+                    <div id="countdown-timer">00g 00h 00m 00s</div>
                 </div>
-
-                <div class="row g-3 mb-4">
-                    <div class="col-6">
-                        <label for="minimo" class="form-label">Valore Minimo</label>
-                        <input type="number" class="form-control" id="minimo" value="1" min="0">
-                    </div>
-                    <div class="col-6">
-                        <label for="massimo" class="form-label">Valore Massimo</label>
-                        <input type="number" class="form-control" id="massimo" value="100" min="1">
-                    </div>
-                </div>
-
-                <button onclick="estraiNumero()" class="btn btn-success btn-lg w-100">
-                    Estrai Numero Casuale
-                </button>
+                
             </div>
-        </div>
+        </main>
+
+        <footer class="mt-auto p-3">
+            <p class="text-muted small">&copy; Calendario Dell'avvento di Aurora Discristofaro</p>
+        </footer>
+ 
     </div>
 
     <script>
-        // JavaScript per la logica
-        function estraiNumero() {
-            const minInput = document.getElementById('minimo').value;
-            const maxInput = document.getElementById('massimo').value;
+        const elencoParole = [
+            "Avvento", "Candela", "Nevicata", "Ghirlanda", "Festa",
+            "Abete", "Regalo", "Magia", "Inverno", "Gioia",
+            "Musica", "Amicizia", "Pace", "Fiamma", "Stelle",
+            "Cioccolato", "Caminetto", "Tradizione", "Canto", "Babbo",
+            "Slitta", "Felicità", "Famiglia", "Natale"
+        ];
 
-            let min = parseInt(minInput);
-            let max = parseInt(maxInput);
+        // Riferimenti agli elementi HTML
+        const parolaElemento = document.getElementById('parola-del-giorno');
+        const timerElemento = document.getElementById('countdown-timer');
+        const timerMessaggio = document.getElementById('countdown-message');
+        const timerContenitore = document.getElementById('countdown-container');
 
-            if (isNaN(min) || isNaN(max)) {
-                alert("Per favore, inserisci numeri validi per il range.");
-                return;
+        /**
+         * Determina e mostra la parola corretta o un messaggio di stato.
+         */
+        function mostraParolaDelGiorno() {
+            const oggi = new Date();
+            const mese = oggi.getMonth(); // 0 = Gennaio, 11 = Dicembre
+            const giorno = oggi.getDate();
+
+            if (mese === 11 && giorno >= 1 && giorno <= 24) {
+                // Periodo Attivo (1-24 Dicembre)
+                const indiceParola = giorno - 1;
+                parolaElemento.textContent = elencoParole[indiceParola];
+                parolaElemento.classList.remove('text-secondary');
+                parolaElemento.classList.add('text-primary');
+
+            } else if (mese < 11) {
+                // Periodo di Attesa (Prima di Dicembre)
+                parolaElemento.textContent = "Attendiamo l'inizio del Calendario dell'Avvento";
+                parolaElemento.classList.remove('text-primary');
+                parolaElemento.classList.add('text-secondary');
+            } else {
+                // Periodo Post-Evento (Dopo il 24 Dicembre)
+                parolaElemento.textContent = "Il Calendario dell'Avvento è terminato. Buon Natale!";
+                parolaElemento.classList.remove('text-primary');
+                parolaElemento.classList.add('text-secondary');
             }
-
-            if (min >= max) {
-                alert("Il valore minimo (" + min + ") deve essere inferiore al valore massimo (" + max + ").");
-                return;
-            }
-
-            const numeroCasuale = Math.floor(Math.random() * (max - min + 1)) + min;
-
-            document.getElementById('risultato').textContent = numeroCasuale;
         }
-    </script>
+        
+        /**
+         * Aggiorna il timer verso la destinazione corretta.
+         */
+        function aggiornaCountdown() {
+            const oraCorrente = new Date();
+            let dataTarget = null;
+            const annoCorrente = oraCorrente.getFullYear();
+            const mese = oraCorrente.getMonth();
+            const giorno = oraCorrente.getDate();
+            
+            // 1. Definisce la data di destinazione (dataTarget)
+            if (mese < 11) { 
+                // Prima di Dicembre: countdown al 1° Dicembre di quest'anno
+                dataTarget = new Date(annoCorrente, 11, 1, 0, 0, 0, 0); 
+                timerMessaggio.textContent = "Inizio evento in:";
+            } else if (giorno >= 1 && giorno <= 23) { 
+                // Durante l'Avvento: countdown alla mezzanotte di stasera
+                dataTarget = new Date(oraCorrente);
+                dataTarget.setDate(dataTarget.getDate() + 1);
+                dataTarget.setHours(0, 0, 0, 0); 
+                timerMessaggio.textContent = "Prossima parola in:";
+            } else if (giorno === 24) { 
+                // Ultimo giorno: countdown fino a Natale (25 Dicembre)
+                dataTarget = new Date(annoCorrente, 11, 25, 0, 0, 0, 0); 
+                timerMessaggio.textContent = "Fine evento in:";
+            } else { 
+                // Dopo il 24 Dicembre
+                timerMessaggio.textContent = "Evento concluso.";
+                timerElemento.textContent = "";
+                timerContenitore.classList.add('d-none'); // Usa la classe di Bootstrap per nascondere
+                return;
+            }
+            
+            // 2. Calcola il tempo rimanente
+            const tempoRimanenteMs = dataTarget.getTime() - oraCorrente.getTime();
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            if (tempoRimanenteMs < 0) {
+                // Se il tempo è negativo, è scattata una nuova data. Ricarica la logica.
+                mostraParolaDelGiorno();
+                aggiornaCountdown();
+                return;
+            }
+
+            // 3. Conversione e Formattazione
+            const formattaTempo = (t) => String(t).padStart(2, '0');
+
+            const giorni = Math.floor(tempoRimanenteMs / (1000 * 60 * 60 * 24));
+            const ore = Math.floor((tempoRimanenteMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minuti = Math.floor((tempoRimanenteMs % (1000 * 60 * 60)) / (1000 * 60));
+            const secondi = Math.floor((tempoRimanenteMs % (1000 * 60)) / 1000);
+
+            // 4. Formatta l'output
+            let timerString;
+            if (giorni > 0) {
+                // Se manca più di un giorno, mostra anche i giorni
+                timerString = `${giorni}g ${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
+            } else {
+                 // Altrimenti (durante l'Avvento), mostra solo ore, minuti, secondi
+                timerString = `${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
+            }
+            
+            timerElemento.textContent = timerString;
+            timerContenitore.classList.remove('d-none'); // Assicura che sia visibile
+            
+            // 5. Gestione del cambio: se il countdown è quasi a zero
+            if (tempoRimanenteMs < 1000) {
+                setTimeout(() => {
+                    mostraParolaDelGiorno();
+                    aggiornaCountdown(); 
+                }, 1000);
+            }
+        }
+        
+        // --- Inizializzazione ---
+        
+        mostraParolaDelGiorno(); // Mostra la parola o il messaggio di attesa
+
+        // Avvia il countdown e lo aggiorna ogni secondo
+        setInterval(aggiornaCountdown, 1000);
+        aggiornaCountdown(); // Chiamata iniziale per evitare un ritardo
+    </script> 
 </body>
 </html>
