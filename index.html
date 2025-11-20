@@ -107,6 +107,42 @@
             margin-bottom: 5px;
         }
 
+        /* ... (dentro il blocco <style>) ... */
+
+        /* Stile per il titolo dell'archivio */
+        .archivio-title {
+            font-family: var(--font-principale);
+            font-weight: 700;
+            font-size: 2em; 
+            color: var(--colore-verde-natale);
+            margin-bottom: 15px;
+            text-shadow: none;
+        }
+
+        /* Stile per le singole parole nell'archivio */
+        #elenco-parole-passate {
+            text-align: left;
+            padding: 0 10px;
+            font-size: 1.1em;
+            font-family: var(--font-principale); /* Un font più leggibile per l'elenco */
+            color: #444;
+            text-align: center;
+            
+        }
+
+        .parola-passata {
+            margin-bottom: 8px;
+            padding: 5px;
+        border-bottom: 1px dashed #DAA520;
+        }
+
+        .parola-passata strong {
+            color: var(--colore-rosso-natale);
+            font-weight: 700;
+        }
+
+/* ... (continua il tuo CSS esistente) ... */
+
         /* 🚨 STILE FOOTER FISSO E BIANCO 🚨 */
         footer {
             color: #333; 
@@ -232,12 +268,17 @@
 
     </div> 
     
+    <div id="archivio-parole" class="card-container text-center mt-4">
+            <h2 class="archivio-title">Archivio Parole Usate</h2>
+            <div id="elenco-parole-passate"></div>
+    </div>
+    
     <footer>
         <p class="small mb-0 opacity-75">&copy; Calendario dell'Avvento di Aurora Dicristofaro</p>
     </footer>
 
-    <script>
-        // Logica JavaScript (Identica a prima)
+<script>
+        // Logica JavaScript del Calendario dell'Avvento
         const elencoParole = [
             "Avvento", "Candela", "Nevicata", "Ghirlanda", "Festa",
             "Abete", "Regalo", "Magia", "Inverno", "Gioia",
@@ -250,7 +291,8 @@
         const timerElemento = document.getElementById('countdown-timer');
         const timerMessaggio = document.getElementById('countdown-message');
         const timerContenitore = document.getElementById('countdown-container');
-
+        
+        // Funzione principale per mostrare la parola
         function mostraParolaDelGiorno() {
             const oggi = new Date();
             const mese = oggi.getMonth();
@@ -273,6 +315,7 @@
             }
         }
         
+        // Funzione per aggiornare il timer
         function aggiornaCountdown() {
             const oraCorrente = new Date();
             let dataTarget = null;
@@ -313,6 +356,7 @@
 
             if (tempoRimanenteMs < 0) {
                 mostraParolaDelGiorno();
+                mostraArchivioParole(); // Aggiorna archivio al cambio di giorno
                 aggiornaCountdown();
                 return;
             }
@@ -337,51 +381,87 @@
             if (tempoRimanenteMs < 1000) {
                 setTimeout(() => {
                     mostraParolaDelGiorno();
+                    mostraArchivioParole(); // Aggiorna archivio al cambio di giorno
                     aggiornaCountdown(); 
                 }, 1000);
             }
         }
-
-        // 🚨 NUOVA FUNZIONE DI CONTROLLO DATA 🚨
+        
+        // 🚨 FUNZIONE: Genera l'archivio delle parole uscite 🚨
+        function mostraArchivioParole() {
+            const oggi = new Date();
+            const mese = oggi.getMonth();
+            const giorno = oggi.getDate();
+            
+            const archivioElemento = document.getElementById('archivio-parole');
+            const elencoElemento = document.getElementById('elenco-parole-passate');
+            
+            // Nascondi l'archivio se non siamo a dicembre o se è solo il 1°
+            if (mese !== 11 || giorno <= 1) {
+                archivioElemento.style.display = 'none';
+                return;
+            }
+            
+            archivioElemento.style.display = 'block'; 
+            elencoElemento.innerHTML = ''; 
+            
+            // Determina fino a che giorno mostrare (giorno precedente a oggi)
+            const giornoMax = giorno - 1; 
+            
+            for (let i = 0; i < giornoMax; i++) {
+                const data = i + 1; 
+                const parola = elencoParole[i];
+                
+                // Formatta la data
+                const dataStr = new Date(oggi.getFullYear(), 11, data).toLocaleDateString('it-IT', {
+                    day: 'numeric',
+                    month: 'long'
+                });
+                
+                const item = document.createElement('div');
+                item.classList.add('parola-passata');
+                item.innerHTML = `${dataStr}: <strong>${parola}</strong>`;
+                
+                elencoElemento.appendChild(item);
+            }
+        }
+        
+        // Funzione di controllo neve
         function shouldSnow() {
             const oggi = new Date();
-            const mese = oggi.getMonth(); // 11 = Dicembre
+            const mese = oggi.getMonth();
             const giorno = oggi.getDate();
+            
+            return (mese === 11 && giorno >= 1);
+        }
         
-        // La neve cade solo dal 1° dicembre (mese 11) in poi
-        return (mese === 11 && giorno >= 1);
-    }
-        
-        // Inizializzazione
+        // INIZIALIZZAZIONE
         mostraParolaDelGiorno();
+        mostraArchivioParole(); // Chiama la funzione per inizializzare lo stato
         setInterval(aggiornaCountdown, 1000);
         aggiornaCountdown();
-    
-    // ❄️ Logica per la Neve che Cade con Vento ❄️
-    if (shouldSnow()) {
-        const snowContainer = document.getElementById('snow-container');
-        const numSnowflakes = 100; // 🚨 AUMENTATO IL NUMERO PER NEVICATA PIÙ DENSA 🚨
 
-        for (let i = 0; i < numSnowflakes; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = '❄'; 
+        // ❄️ Logica per la Neve che Cade con Vento (CONDIZIONALE) ❄️
+        if (shouldSnow()) {
+            const snowContainer = document.getElementById('snow-container');
+            const numSnowflakes = 100; 
 
-            // Posizione iniziale casuale e dinamica
-            snowflake.style.left = `${Math.random() * 100}vw`;
-        
-            // 🚨 NUOVA PROPRIETÀ: Inizia leggermente fuori dallo schermo (sopra) 🚨
-            snowflake.style.top = `${-1 * (Math.random() * 10 + 5)}%`; // Posiziona tra -5% e -15% in alto
+            for (let i = 0; i < numSnowflakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄'; 
 
-            snowflake.style.animationDuration = `${Math.random() * 3 + 5}s, ${Math.random() * 5 + 3}s`; 
-            snowflake.style.animationDelay = `${Math.random() * 5}s`; 
-            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.6}em`; 
-            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.top = `${-1 * (Math.random() * 10 + 5)}%`; 
 
-            snowContainer.appendChild(snowflake);
+                snowflake.style.animationDuration = `${Math.random() * 3 + 5}s, ${Math.random() * 5 + 3}s`; 
+                snowflake.style.animationDelay = `${Math.random() * 5}s`; 
+                snowflake.style.fontSize = `${Math.random() * 0.8 + 0.6}em`; 
+                snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
+
+                snowContainer.appendChild(snowflake);
+            }
         }
-    }
-
     </script> 
 </body>
 </html>
