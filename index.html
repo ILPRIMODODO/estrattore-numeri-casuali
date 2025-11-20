@@ -3,60 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario dell'Avvento Digitale</title>
+    <title>Calendario dell'Avvento Festivo</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        .full-height {
-            min-height: 100vh;
+        /* Variabili CSS */
+        :root {
+            --colore-rosso-natale: #BD3C47; /* Rosso Intenso */
+            --colore-verde-natale: #1E6F34; /* Verde Pino */
+            --colore-oro-natale: #DAA520;  /* Giallo Oro */
+            --colore-bianco-neve: #F8F8F8;
+            --font-principale: 'Mountains of Christmas', cursive;
         }
-        /* Stile per il countdown (rosso per urgenza) */
+
+        body {
+            font-family: var(--font-principale);
+            color: #333;
+            background: url('sfondo.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra il contenuto verticale */
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 60px; 
+        }
+
+        /* ⭐️ Stile per il Titolo Principale ⭐️ */
+        .titolo-header {
+            font-family: var(--font-principale);
+            font-weight: 700;
+            font-size: 3.5em; 
+            color: var(--colore-rosso-natale);
+            text-align: center;
+            text-shadow: 2px 2px 5px rgb(255, 255, 255); 
+            line-height: 1.1;
+            margin-bottom: 20px;
+            /* 🚨 Sposta il titolo più in alto per le stelle 🚨 */
+            margin-top: -15vh; /* Regola questo valore per posizionarlo correttamente */
+        }
+
+        /* Contenitore principale della Card */
+        .card-container {
+            background-color: rgba(255, 255, 255, 0.98); 
+            border-radius: 15px;
+            padding: 40px 30px; 
+            box-shadow: 0 10px 40px rgb(255, 255, 255);
+            max-width: 450px; 
+            width: 100%; 
+            border: 5px solid var(--colore-oro-natale); 
+        }
+
+        /* Testo fisso "LA PAROLA DEL GIORNO È" */
+        #sottotitolo-parola {
+            font-family: var(--font-principale);
+            font-weight: 400;
+            color: var(--colore-verde-natale);
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+
+        /* Parola dinamica */
+        #parola-del-giorno {
+            color: var(--colore-rosso-natale); 
+            font-size: 3em; 
+            font-weight: 700;
+            text-shadow: none; 
+            transition: color 0.3s ease-in-out;
+            line-height: 1.2;
+            min-height: 1.2em; 
+        }
+        
+        /* Stile per il messaggio di attesa */
+        .testo-attesa { 
+            color: #6c757d; 
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.8em !important;
+        }
+
+        /* 🎄 Linea Ghirlanda Decorativa 🎄 */
+        .ghirlanda-divider {
+            height: 0px;
+            border: 3px solid var(--colore-oro-natale);
+            border-radius: 5px;
+            margin: 30px auto;
+            width: 100%; /* Occupa l'80% della larghezza della card */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Countdown */
         #countdown-timer {
-            font-size: 1.5em;
-            color: #dc3545;
+            font-size: 2.2em; 
+            color: var(--colore-rosso-natale);
             font-weight: bold;
         }
-        #titolo {
-            font-size: 1.4em;
-            color: #dc3545;
-            font-weight: bold; 
+        #countdown-message {
+            font-size: 18px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        /* 🚨 STILE FOOTER FISSO E BIANCO 🚨 */
+        footer {
+            color: #333; 
+            text-shadow: none; 
+            font-size: 1em;
+            text-align: center;
+            padding: 15px 10px;
+            
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            
+            background-color: var(--colore-bianco-neve); 
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1); 
+            z-index: 10; 
+        }
+
+        /* ❄️ Effetto Neve che Cade ❄️ */
+        #snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permette di cliccare gli elementi sottostanti */
+            z-index: 9999; /* Assicura che la neve sia sopra a tutto */
+            overflow: hidden; /* Nasconde i fiocchi che escono dai bordi */
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white; /* Colore dei fiocchi */
+            font-size: 1.2em; /* Dimensione dei fiocchi */
+            text-shadow: 0 0 2px rgba(0,0,0,0.3);
+            animation: fall linear infinite; /* Applica l'animazione */
+            opacity: 0.8; /* Opacità dei fiocchi */
+        }       
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh); /* Fai cadere i fiocchi fino in fondo allo schermo */
+            }
+        }
+        
+        /* ⭐️ MOBILE OPTIMIZATION (Media Query) ⭐️ */
+        @media (max-width: 576px) {
+            .titolo-header {
+                font-size: 2.5em; 
+                margin-bottom: 20px;
+                /* 🚨 Sposta il titolo più in alto su mobile 🚨 */
+                margin-top: -18vh; /* Regola questo valore per mobile */
+            }
+            .card-container {
+                padding: 30px 20px; 
+            }
+            #sottotitolo-parola {
+                font-size: 40px;
+            
+            }
+            #parola-del-giorno {
+                font-size: 35px; 
+            }
+            .testo-attesa { 
+                font-size: 30px !important;
+            }
+            #countdown-timer {
+                font-size: 30px; 
+            }
+             body {
+                padding-bottom: 50px; 
+            }
+            footer {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="d-flex flex-column justify-content-center align-items-center text-center bg-light full-height">
+  <div id="snow-container"></div>
+    <header>
+        <h1 class="titolo-header">CALENDARIO<br>DELL'AVVENTO</h1>
+    </header>
 
-        <header class="mt-4 mb-5">
-            <div id="titolo" >CALENDARIO DELL'AVVENTO</div>
-        </header>
-
-        <header class="p-4">
-            <h1 id="titoloo" class="display-4 text-success">LA PAROLA DEL GIORNO È</h1>
-        </header>
-
-        <main class="container mt-2 mb-5 d-flex justify-content-center">
+    <div class="card-container text-center">
+        
+        <main class="container">
+            <h2 id="sottotitolo-parola" class="text-uppercase">La Parola<br>del Giorno è</h2>
             
-            <div class="card shadow-lg p-5 mx-2 mb-5">
-                <h2 id="parola-del-giorno" class="display-3 text-secondary fw-bold">Caricamento...</h2>
-                <hr class="my-4">
-                
-                <div id="countdown-container">
-                    <p class="lead text-muted mb-2" id="countdown-message">Inizio evento in:</p>
-                    <div id="countdown-timer">00g 00h 00m 00s</div>
-                </div>
-                
+            <p id="parola-del-giorno" class="fw-bold">Caricamento...</p>
+            
+            <div class="ghirlanda-divider"></div>
+            
+            <div id="countdown-container">
+                <p class="small mb-1" id="countdown-message">Inizio evento in:</p>
+                <div id="countdown-timer">00g 00h 00m 00s</div>
             </div>
+            
         </main>
 
-        <footer class="mt-auto p-3">
-            <p class="text-muted small">&copy; Calendario Dell'avvento di Aurora Dicristofaro</p>
-        </footer>
- 
-    </div>
+    </div> 
+    
+    <footer>
+        <p class="small mb-0 opacity-75">&copy; Calendario dell'Avvento di Aurora Dicristofaro</p>
+    </footer>
+
 
     <script>
+        // Logica JavaScript (Identica a prima)
         const elencoParole = [
             "Avvento", "Candela", "Nevicata", "Ghirlanda", "Festa",
             "Abete", "Regalo", "Magia", "Inverno", "Gioia",
@@ -65,43 +227,33 @@
             "Slitta", "Felicità", "Famiglia", "Natale"
         ];
 
-        // Riferimenti agli elementi HTML
         const parolaElemento = document.getElementById('parola-del-giorno');
         const timerElemento = document.getElementById('countdown-timer');
         const timerMessaggio = document.getElementById('countdown-message');
         const timerContenitore = document.getElementById('countdown-container');
 
-        /**
-         * Determina e mostra la parola corretta o un messaggio di stato.
-         */
         function mostraParolaDelGiorno() {
             const oggi = new Date();
-            const mese = oggi.getMonth(); // 0 = Gennaio, 11 = Dicembre
+            const mese = oggi.getMonth();
             const giorno = oggi.getDate();
 
+            parolaElemento.classList.remove('testo-attesa');
+            parolaElemento.classList.remove('text-secondary'); 
+
             if (mese === 11 && giorno >= 1 && giorno <= 24) {
-                // Periodo Attivo (1-24 Dicembre)
                 const indiceParola = giorno - 1;
                 parolaElemento.textContent = elencoParole[indiceParola];
-                parolaElemento.classList.remove('text-secondary');
-                parolaElemento.classList.add('text-primary');
-
+                
             } else if (mese < 11) {
-                // Periodo di Attesa (Prima di Dicembre)
                 parolaElemento.textContent = "Attendiamo l'inizio del Calendario dell'Avvento";
-                parolaElemento.classList.remove('text-primary');
-                parolaElemento.classList.add('text-secondary');
+                parolaElemento.classList.add('testo-attesa'); 
+                
             } else {
-                // Periodo Post-Evento (Dopo il 24 Dicembre)
                 parolaElemento.textContent = "Il Calendario dell'Avvento è terminato. Buon Natale!";
-                parolaElemento.classList.remove('text-primary');
-                parolaElemento.classList.add('text-secondary');
+                parolaElemento.classList.add('testo-attesa'); 
             }
         }
         
-        /**
-         * Aggiorna il timer verso la destinazione corretta.
-         */
         function aggiornaCountdown() {
             const oraCorrente = new Date();
             let dataTarget = null;
@@ -109,40 +261,43 @@
             const mese = oraCorrente.getMonth();
             const giorno = oraCorrente.getDate();
             
-            // 1. Definisce la data di destinazione (dataTarget)
+            let annoTarget = annoCorrente;
+            if (mese === 0 || (mese === 11 && giorno > 24)) { 
+                annoTarget++;
+            }
+            
             if (mese < 11) { 
-                // Prima di Dicembre: countdown al 1° Dicembre di quest'anno
                 dataTarget = new Date(annoCorrente, 11, 1, 0, 0, 0, 0); 
                 timerMessaggio.textContent = "Inizio evento in:";
             } else if (giorno >= 1 && giorno <= 23) { 
-                // Durante l'Avvento: countdown alla mezzanotte di stasera
                 dataTarget = new Date(oraCorrente);
                 dataTarget.setDate(dataTarget.getDate() + 1);
                 dataTarget.setHours(0, 0, 0, 0); 
                 timerMessaggio.textContent = "Prossima parola in:";
             } else if (giorno === 24) { 
-                // Ultimo giorno: countdown fino a Natale (25 Dicembre)
                 dataTarget = new Date(annoCorrente, 11, 25, 0, 0, 0, 0); 
                 timerMessaggio.textContent = "Fine evento in:";
             } else { 
-                // Dopo il 24 Dicembre
-                timerMessaggio.textContent = "Evento concluso.";
-                timerElemento.textContent = "";
-                timerContenitore.classList.add('d-none'); // Usa la classe di Bootstrap per nascondere
-                return;
+                dataTarget = new Date(annoTarget, 11, 1, 0, 0, 0, 0); 
+                timerMessaggio.textContent = "Prossimo Avvento in:";
+                
+                if (dataTarget.getFullYear() > annoCorrente) {
+                } else {
+                    timerMessaggio.textContent = "Evento concluso.";
+                    timerElemento.textContent = "";
+                    timerContenitore.classList.add('d-none');
+                    return;
+                }
             }
             
-            // 2. Calcola il tempo rimanente
             const tempoRimanenteMs = dataTarget.getTime() - oraCorrente.getTime();
 
             if (tempoRimanenteMs < 0) {
-                // Se il tempo è negativo, è scattata una nuova data. Ricarica la logica.
                 mostraParolaDelGiorno();
                 aggiornaCountdown();
                 return;
             }
 
-            // 3. Conversione e Formattazione
             const formattaTempo = (t) => String(t).padStart(2, '0');
 
             const giorni = Math.floor(tempoRimanenteMs / (1000 * 60 * 60 * 24));
@@ -150,20 +305,16 @@
             const minuti = Math.floor((tempoRimanenteMs % (1000 * 60 * 60)) / (1000 * 60));
             const secondi = Math.floor((tempoRimanenteMs % (1000 * 60)) / 1000);
 
-            // 4. Formatta l'output
             let timerString;
             if (giorni > 0) {
-                // Se manca più di un giorno, mostra anche i giorni
                 timerString = `${giorni}g ${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
             } else {
-                 // Altrimenti (durante l'Avvento), mostra solo ore, minuti, secondi
                 timerString = `${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
             }
             
             timerElemento.textContent = timerString;
-            timerContenitore.classList.remove('d-none'); // Assicura che sia visibile
+            timerContenitore.classList.remove('d-none');
             
-            // 5. Gestione del cambio: se il countdown è quasi a zero
             if (tempoRimanenteMs < 1000) {
                 setTimeout(() => {
                     mostraParolaDelGiorno();
@@ -171,14 +322,47 @@
                 }, 1000);
             }
         }
-        
-        // --- Inizializzazione ---
-        
-        mostraParolaDelGiorno(); // Mostra la parola o il messaggio di attesa
 
-        // Avvia il countdown e lo aggiorna ogni secondo
+        // 🚨 NUOVA FUNZIONE DI CONTROLLO DATA 🚨
+        function shouldSnow() {
+            const oggi = new Date();
+            const mese = oggi.getMonth(); // 11 = Dicembre
+            const giorno = oggi.getDate();
+        
+        // La neve cade solo dal 1° dicembre (mese 11) in poi
+        return (mese === 11 && giorno >= 1);
+    }
+        
+        // Inizializzazione
+        mostraParolaDelGiorno();
         setInterval(aggiornaCountdown, 1000);
-        aggiornaCountdown(); // Chiamata iniziale per evitare un ritardo
+        aggiornaCountdown();
+    
+    // ❄️ Logica per la Neve che Cade con Vento ❄️
+    if (shouldSnow()) {
+        const snowContainer = document.getElementById('snow-container');
+        const numSnowflakes = 100; // 🚨 AUMENTATO IL NUMERO PER NEVICATA PIÙ DENSA 🚨
+
+        for (let i = 0; i < numSnowflakes; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄'; 
+
+            // Posizione iniziale casuale e dinamica
+            snowflake.style.left = `${Math.random() * 100}vw`;
+        
+            // 🚨 NUOVA PROPRIETÀ: Inizia leggermente fuori dallo schermo (sopra) 🚨
+            snowflake.style.top = `${-1 * (Math.random() * 10 + 5)}%`; // Posiziona tra -5% e -15% in alto
+
+            snowflake.style.animationDuration = `${Math.random() * 3 + 5}s, ${Math.random() * 5 + 3}s`; 
+            snowflake.style.animationDelay = `${Math.random() * 5}s`; 
+            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.6}em`; 
+            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
+
+            snowContainer.appendChild(snowflake);
+        }
+    }
+
     </script> 
 </body>
 </html>
