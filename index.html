@@ -213,7 +213,7 @@
                 font-size: 2.5em; 
                 margin-bottom: 40px;
                 /* 🚨 Sposta il titolo più in alto su mobile 🚨 */
-                margin-top: -5vh; /* Regola questo valore per mobile */
+                margin-top: 20px; /* Regola questo valore per mobile */
             }
             .card-container {
                 padding: 30px 20px; 
@@ -269,7 +269,7 @@
     </div> 
     
     <div id="archivio-parole" class="card-container text-center mt-4">
-            <h2 class="archivio-title">Archivio Parole Usate</h2>
+            <h2 class="archivio-title">Archivio Parole Passate</h2>
             <div id="elenco-parole-passate"></div>
     </div>
     
@@ -444,7 +444,7 @@
         // ❄️ Logica per la Neve che Cade con Vento (CONDIZIONALE) ❄️
         if (shouldSnow()) {
             const snowContainer = document.getElementById('snow-container');
-            const numSnowflakes = 100; 
+            const numSnowflakes = 200; 
 
             for (let i = 0; i < numSnowflakes; i++) {
                 const snowflake = document.createElement('div');
