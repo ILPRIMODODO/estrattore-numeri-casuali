@@ -275,7 +275,7 @@
     </div>
     
     <footer>
-        <p class="small mb-0 opacity-75">&copy; Calendario dell'Avvento di Aurora Dicristofaro</p>
+        <p class="small mb-0 opacity-75">&copy; Calendario dell'Avvento di Aurora Di Cristofaro</p>
     </footer>
 
 <script>
@@ -398,13 +398,10 @@
             const elencoElemento = document.getElementById('elenco-parole-passate');
             
             // Nascondi l'archivio se non siamo a dicembre o se è solo il 1°
-            if (mese !== 11 || giorno <= 1) {
+            if (mese !== 11 || giorno <= 1)  {
                 archivioElemento.style.display = 'none';
                 return;
-            }
-            else if (mese == 11 || giorno >= 25) { 
-                archivioElemento.style.display = 'none';
-                return;
+            } 
             
             archivioElemento.style.display = 'block'; 
             elencoElemento.innerHTML = ''; 
@@ -415,6 +412,8 @@
             for (let i = 0; i < giornoMax; i++) {
                 const data = i + 1; 
                 const parola = elencoParole[i];
+                    if (i > 23) {
+                        break;}
                 
                 // Formatta la data
                 const dataStr = new Date(oggi.getFullYear(), 11, data).toLocaleDateString('it-IT', {
