@@ -22,13 +22,10 @@
         body {
             font-family: var(--font-principale);
             color: #333;
-            /* 🚨 Modificato il layout per scrolling mobile 🚨 */
             display: flex;
             flex-direction: column;
             align-items: center;
-        
-            /* Rimosso justify-content: center per evitare che il contenuto venga tagliato */
-            min-height: 100vh; /* Mantieni l'altezza minima */
+            min-height: 100vh;
             padding: 20px;
             padding-bottom: 60px;  
             background-color: #333;
@@ -56,8 +53,7 @@
             text-shadow: 2px 2px 5px rgb(255, 255, 255);  
             line-height: 1.1;
             margin-bottom: 40px;
-            /* 🚨 Sposta il titolo più in alto per le stelle 🚨 */
-            margin-top: 0vh; /* Regola questo valore per posizionarlo correttamente */
+            margin-top: 0vh; 
             position: relative;  
             z-index: 1;
         }
@@ -110,7 +106,7 @@
             border: 3px solid var(--colore-oro-natale);
             border-radius: 5px;
             margin: 30px auto;
-            width: 100%; /* Occupa l'80% della larghezza della card */
+            width: 100%;
             box-shadow: 0 3px 6px rgba(0,0,0,0.2);
         }
 
@@ -141,7 +137,7 @@
             text-align: left;
             padding: 0 10px;
             font-size: 1.1em;
-            font-family: var(--font-principale); /* Un font più leggibile per l'elenco */
+            font-family: var(--font-principale);
             color: #444;
             text-align: center;
         }
@@ -177,29 +173,29 @@
 
         /* ❄️ Effetto Neve che Cade ❄️ */
         #snow-container {
-            position: fixed;
+            position: fixed;  
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Permette di cliccare gli elementi sottostanti */
-            z-index: 9999; /* Assicura che la neve sia sopra a tutto */
-            overflow: hidden; /* Nasconde i fiocchi che escono dai bordi */
-            z-index: 10; /* Assicura che la neve sia sopra il wrapper, ma sotto il contenuto */
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+            z-index: 10;
         }
 
         .snowflake {
             position: absolute;
-            color: white; /* Colore dei fiocchi */
-            font-size: 1.2em; /* Dimensione dei fiocchi */
+            color: white;
+            font-size: 1.2em;
             text-shadow: 0 0 2px rgba(0,0,0,0.3);
-            animation: fall linear infinite; /* Applica l'animazione */
-            opacity: 0.8; /* Opacità dei fiocchi */
+            animation: fall linear infinite;
+            opacity: 0.8;
         }      
 
         @keyframes fall {
             to {
-                transform: translateY(100vh); /* Fai cadere i fiocchi fino in fondo allo schermo */
+                transform: translateY(100vh);
             }
         }
         
@@ -208,8 +204,7 @@
             .titolo-header {
                 font-size: 2.5em;  
                 margin-bottom: 40px;
-                /* 🚨 Sposta il titolo più in alto su mobile 🚨 */
-                margin-top: 20px; /* Regola questo valore per mobile */
+                margin-top: 20px;
             }
             .card-container {
                 padding: 30px 20px;  
@@ -234,7 +229,7 @@
             }
         }
         
-        /* --- NUOVO: STILE MODAL DI AVVISO --- */
+        /* --- STILE MODAL DI AVVISO --- */
         #avviso-modal {
             display: none; 
             position: fixed;
@@ -249,7 +244,6 @@
         }
 
         .modal-content {
-            /* 🚨 MODIFICATO: Sfondo neutro, come da richiesta iniziale 🚨 */
             background-color: var(--colore-bianco-neve); 
             margin: 10% auto; 
             padding: 30px;
@@ -258,7 +252,6 @@
             max-width: 400px; 
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
             text-align: center;
-            /* Bordo rosso per contrasto */
             border: 4px solid var(--colore-rosso-natale);
             font-family: sans-serif; 
         }
@@ -266,18 +259,15 @@
         .modal-content h3 {
             font-family: var(--font-principale);
             font-size: 2em;
-            /* Titolo intero ora è verde, in linea con lo stile Natale */
             color: var(--colore-verde-natale); 
             margin-bottom: 15px;
         }
 
-        /* 🚨 NUOVO: Stile per la singola parola "ATTENZIONE" 🚨 */
         .avviso-rosso {
             color: var(--colore-rosso-natale);
             font-weight: 700;
         }
         
-        /* Testo del corpo del modal */
         .modal-content p {
             font-size: 1.1em;
             color: #555; 
@@ -292,6 +282,23 @@
             align-items: center;
             margin-top: 15px;
         }
+        
+        /* 🚨 NUOVO: Stile per la parola "Codice" cliccabile 🚨 */
+        #parola-codice-sblocco {
+            color: var(--colore-rosso-natale);
+            font-weight: 700;
+            font-family: var(--font-principale);
+            font-size: 1.4em;
+            text-decoration: none; /* Rimuovi la sottolineatura */
+            margin-bottom: 15px; /* Spazio dal pulsante sotto */
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        #parola-codice-sblocco:hover {
+            opacity: 0.7;
+        }
+
 
         #continua-btn {
             background-color: var(--colore-rosso-natale);
@@ -316,23 +323,48 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            
         }
 
         #non-mostrare-piu {
             margin-right: 5px;
         }
+
+        /* 🚨 NUOVO: Stile per il Box Codice 🚨 */
+        #box-codice-sblocco {
+            display: none; /* Nascosto di default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 40px;
+            background-color: var(--colore-rosso-natale);
+            color: white;
+            border-radius: 15px;
+            z-index: 1002; /* Sopra al modale di avviso */
+            text-align: center;
+            font-size: 2.5em;
+            font-family: var(--font-principale);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+            border: 5px solid var(--colore-oro-natale);
+        }
+
         /* --- FINE STILE MODAL --- */
     </style>
 </head>
 <body>
     
+    <div id="box-codice-sblocco">
+        Codice Segreto: 2452
+    </div>
+
     <div id="avviso-modal" class="modal">
         <div class="modal-content">
             <h3><span class="avviso-rosso">ATTENZIONE</span><br> Leggi le Istruzioni</h3>
-            <p>Prima di procedere sul sito, ti preghiamo di prendere visione delle istruzioni e delle linee guida fornite.</p>
+            <p>Ogni giorno su questo sito uscirà una parola nuova, e tu dovrai aprire la casella corrispondente e ricordati che in caso dovesse esserci qualche frase detro la casella si deve sempre leggere per prima remember this baby</p>
             
             <div class="modal-actions">
+                <a id="parola-codice-sblocco">Codice Lucchetto</a> 
+                
                 <button id="continua-btn">Continua</button>
                 <label class="non-mostrare-label">
                     <input type="checkbox" id="non-mostrare-piu">
@@ -540,6 +572,8 @@
     const avvisoModal = document.getElementById('avviso-modal');
     const continuaBtn = document.getElementById('continua-btn');
     const nonMostrarePiuCheckbox = document.getElementById('non-mostrare-piu');
+    const parolaCodiceSblocco = document.getElementById('parola-codice-sblocco'); 
+    const boxCodiceSblocco = document.getElementById('box-codice-sblocco');      
     const STORAGE_KEY = 'modal_avviso_calendario_nascosto';
 
     // 1. Controlla lo stato in localStorage all'avvio
@@ -549,18 +583,32 @@
 
     // 2. Logica al click del pulsante 'Continua'
     continuaBtn.addEventListener('click', function() {
-        // Se la checkbox è selezionata, salva la preferenza
         if (nonMostrarePiuCheckbox.checked) {
             localStorage.setItem(STORAGE_KEY, 'true');
         }
-        // Nascondi il modal
         avvisoModal.style.display = 'none';
+        boxCodiceSblocco.style.display = 'none'; // Assicurati che il box codice sia nascosto
     });
+
+    // 3. Logica al click della parola "Codice" (SBLOCCO)
+    parolaCodiceSblocco.addEventListener('click', function(e) {
+        e.preventDefault(); // Impedisce il comportamento predefinito del link
+        avvisoModal.style.display = 'none'; // Nasconde il modale di avviso
+        boxCodiceSblocco.style.display = 'block'; // Mostra il box con il codice 2452
+        
+        // Nasconde il codice dopo 3 secondi (3000 ms) e ripristina il modale di avviso
+        setTimeout(() => {
+             boxCodiceSblocco.style.display = 'none';
+             alert("Il codice è stato visualizzato. Clicca Continua per accedere al sito."); 
+             avvisoModal.style.display = 'block'; // Riporta l'utente al modale di avviso
+        }, 3000); 
+    });
+
     // --- FINE LOGICA MODALE ---
     
     // INIZIALIZZAZIONE (il resto della logica del sito)
     mostraParolaDelGiorno();
-    mostraArchivioParole(); // Chiama la funzione per inizializzare lo stato
+    mostraArchivioParole(); 
     setInterval(aggiornaCountdown, 1000);
     aggiornaCountdown();
 
