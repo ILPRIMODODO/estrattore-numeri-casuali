@@ -30,48 +30,48 @@
             /* Rimosso justify-content: center per evitare che il contenuto venga tagliato */
             min-height: 100vh; /* Mantieni l'altezza minima */
             padding: 20px;
-            padding-bottom: 60px; 
+            padding-bottom: 60px;  
             background-color: #333;
         }
 
         #background-fixed-wrapper {
-            position: fixed; 
+            position: fixed;  
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('sfondo.jpg') no-repeat center center; 
+            background: url('sfondo.jpg') no-repeat center center;  
             background-size: cover;
-            overflow: hidden; 
-            z-index: -1; 
+            overflow: hidden;  
+            z-index: -1;  
         }
 
         /* ⭐️ Stile per il Titolo Principale ⭐️ */
         .titolo-header {
             font-family: var(--font-principale);
             font-weight: 700;
-            font-size: 3.5em; 
+            font-size: 3.5em;  
             color: var(--colore-rosso-natale);
             text-align: center;
-            text-shadow: 2px 2px 5px rgb(255, 255, 255); 
+            text-shadow: 2px 2px 5px rgb(255, 255, 255);  
             line-height: 1.1;
             margin-bottom: 40px;
             /* 🚨 Sposta il titolo più in alto per le stelle 🚨 */
             margin-top: 0vh; /* Regola questo valore per posizionarlo correttamente */
-            position: relative; 
+            position: relative;  
             z-index: 1;
         }
 
         /* Contenitore principale della Card */
         .card-container {
-            background-color: rgba(255, 255, 255, 0.98); 
+            background-color: rgba(255, 255, 255, 0.98);  
             border-radius: 15px;
-            padding: 40px 30px; 
+            padding: 40px 30px;  
             box-shadow: 0 10px 40px rgb(255, 255, 255);
-            max-width: 450px; 
-            width: 100%; 
+            max-width: 450px;  
+            width: 100%;  
             border: 5px solid var(--colore-oro-natale);
-            position: relative; 
+            position: relative;  
             z-index: 1;
             margin-bottom: 20px;
         }
@@ -87,18 +87,18 @@
 
         /* Parola dinamica */
         #parola-del-giorno {
-            color: var(--colore-rosso-natale); 
-            font-size: 3em; 
+            color: var(--colore-rosso-natale);  
+            font-size: 3em;  
             font-weight: 700;
-            text-shadow: none; 
+            text-shadow: none;  
             transition: color 0.3s ease-in-out;
             line-height: 1.2;
-            min-height: 1.2em; 
+            min-height: 1.2em;  
         }
         
         /* Stile per il messaggio di attesa */
-        .testo-attesa { 
-            color: #6c757d; 
+        .testo-attesa {  
+            color: #6c757d;  
             font-style: italic;
             font-weight: 400;
             font-size: 1.8em !important;
@@ -116,7 +116,7 @@
 
         /* Countdown */
         #countdown-timer {
-            font-size: 2.2em; 
+            font-size: 2.2em;  
             color: var(--colore-rosso-natale);
             font-weight: bold;
         }
@@ -126,13 +126,11 @@
             margin-bottom: 5px;
         }
 
-        /* ... (dentro il blocco <style>) ... */
-
         /* Stile per il titolo dell'archivio */
         .archivio-title {
             font-family: var(--font-principale);
             font-weight: 700;
-            font-size: 2em; 
+            font-size: 2em;  
             color: var(--colore-verde-natale);
             margin-bottom: 15px;
             text-shadow: none;
@@ -146,13 +144,12 @@
             font-family: var(--font-principale); /* Un font più leggibile per l'elenco */
             color: #444;
             text-align: center;
-            
         }
 
         .parola-passata {
             margin-bottom: 8px;
             padding: 5px;
-        border-bottom: 1px dashed #DAA520;
+            border-bottom: 1px dashed #DAA520;
         }
 
         .parola-passata strong {
@@ -160,12 +157,10 @@
             font-weight: 700;
         }
 
-/* ... (continua il tuo CSS esistente) ... */
-
         /* 🚨 STILE FOOTER FISSO E BIANCO 🚨 */
         footer {
-            color: #333; 
-            text-shadow: none; 
+            color: #333;  
+            text-shadow: none;  
             font-size: 1em;
             text-align: center;
             padding: 15px 10px;
@@ -175,9 +170,9 @@
             left: 0;
             right: 0;
             
-            background-color: var(--colore-bianco-neve); 
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1); 
-            z-index: 10; 
+            background-color: var(--colore-bianco-neve);  
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);  
+            z-index: 10;  
         }
 
         /* ❄️ Effetto Neve che Cade ❄️ */
@@ -200,7 +195,7 @@
             text-shadow: 0 0 2px rgba(0,0,0,0.3);
             animation: fall linear infinite; /* Applica l'animazione */
             opacity: 0.8; /* Opacità dei fiocchi */
-        }       
+        }      
 
         @keyframes fall {
             to {
@@ -211,38 +206,131 @@
         /* ⭐️ MOBILE OPTIMIZATION (Media Query) ⭐️ */
         @media (max-width: 576px) {
             .titolo-header {
-                font-size: 2.5em; 
+                font-size: 2.5em;  
                 margin-bottom: 40px;
                 /* 🚨 Sposta il titolo più in alto su mobile 🚨 */
                 margin-top: 20px; /* Regola questo valore per mobile */
             }
             .card-container {
-                padding: 30px 20px; 
+                padding: 30px 20px;  
             }
             #sottotitolo-parola {
                 font-size: 40px;
-            
             }
             #parola-del-giorno {
-                font-size: 35px; 
+                font-size: 35px;  
             }
-            .testo-attesa { 
+            .testo-attesa {  
                 font-size: 30px !important;
             }
             #countdown-timer {
-                font-size: 30px; 
+                font-size: 30px;  
             }
-             body {
-                padding-bottom: 50px; 
+            body {
+                padding-bottom: 50px;  
             }
             footer {
                 padding: 10px;
             }
         }
+        
+        /* --- NUOVO: STILE MODAL DI AVVISO --- */
+        #avviso-modal {
+            display: none; /* Inizialmente nascosto dal JS o mostrato qui */
+            position: fixed;
+            z-index: 1001; /* Assicura che sia sopra a tutto */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7); /* Sfondo scuro per oscurare il resto */
+            padding-top: 50px;
+        }
+
+        .modal-content {
+            background-color: var(--colore-bianco-neve);
+            margin: 10% auto; /* Centratura verticale/orizzontale */
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%; 
+            max-width: 400px; /* Larghezza massima piacevole */
+            box-shadow: 0 5px 25px rgba(255, 255, 255, 0.4);
+            text-align: center;
+            border: 4px solid var(--colore-rosso-natale);
+            font-family: sans-serif; /* Rendi il testo dell'avviso più leggibile */
+        }
+        
+        .modal-content h3 {
+            font-family: var(--font-principale);
+            font-size: 2em;
+            color: var(--colore-verde-natale);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; 
+            margin-top: 15px;
+        }
+
+        #continua-btn {
+            background-color: var(--colore-rosso-natale);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+            flex-grow: 1; /* Permette al bottone di espandersi */
+            margin-right: 10px;
+        }
+
+        #continua-btn:hover {
+            background-color: #A0333C;
+        }
+
+        .non-mostrare-label {
+            font-size: 0.9em;
+            color: #777;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            flex-grow: 0;
+            margin-top: 10px; /* Spazio su mobile */
+        }
+
+        #non-mostrare-piu {
+            margin-right: 5px;
+        }
+        /* --- FINE STILE MODAL --- */
     </style>
 </head>
 <body>
     
+    <div id="avviso-modal" class="modal">
+        <div class="modal-content">
+            <h3>ATTENZIONE: Leggi le Istruzioni</h3>
+            <p>Prima di procedere sul sito, ti preghiamo di prendere visione delle istruzioni e delle linee guida fornite.</p>
+            
+            <div class="modal-actions">
+                <button id="continua-btn">Continua</button>
+                <label class="non-mostrare-label">
+                    <input type="checkbox" id="non-mostrare-piu">
+                    Non mostrare più
+                </label>
+            </div>
+        </div>
+    </div>
     <div id="background-fixed-wrapper">
     <div id="snow-container"></div>
     </div>
@@ -267,7 +355,7 @@
             
         </main>
 
-    </div> 
+    </div>  
     
     <div id="archivio-parole" class="card-container text-center mt-4">
             <h2 class="archivio-title">Archivio Parole Passate</h2>
@@ -279,192 +367,215 @@
     </footer>
 
 <script>
-        // Logica JavaScript del Calendario dell'Avvento
-        const elencoParole = [
-            "$$", "Palle", "Nduja", "Omi", "Tiramisù",
-            "Will", "Nigga", "Young", "", "Pisello",
-            "", "10.3-8.2-3.1-7.1-4.1", "", "", "Stipendio",
-            "", "", "Nico Paaazzz", "", "Orsi",
-            "", "", "", "Duate"
-        ];
+    // Logica JavaScript del Calendario dell'Avvento
+    const elencoParole = [
+        "$$", "Palle", "Nduja", "Omi", "Tiramisù",
+        "Will", "Nigga", "Young", "", "Pisello",
+        "", "10.3-8.2-3.1-7.1-4.1", "", "", "Stipendio",
+        "", "", "Nico Paaazzz", "", "Orsi",
+        "", "", "", "Duate"
+    ];
 
-        const parolaElemento = document.getElementById('parola-del-giorno');
-        const timerElemento = document.getElementById('countdown-timer');
-        const timerMessaggio = document.getElementById('countdown-message');
-        const timerContenitore = document.getElementById('countdown-container');
+    const parolaElemento = document.getElementById('parola-del-giorno');
+    const timerElemento = document.getElementById('countdown-timer');
+    const timerMessaggio = document.getElementById('countdown-message');
+    const timerContenitore = document.getElementById('countdown-container');
+    
+    // Funzione principale per mostrare la parola
+    function mostraParolaDelGiorno() {
+        const oggi = new Date();
+        const mese = oggi.getMonth();
+        const giorno = oggi.getDate();
+
+        parolaElemento.classList.remove('testo-attesa');
+        parolaElemento.classList.remove('text-secondary');  
+
+        if (mese === 11 && giorno >= 1 && giorno <= 24) {
+            const indiceParola = giorno - 1;
+            parolaElemento.textContent = elencoParole[indiceParola];
+            
+        } else if (mese < 11) {
+            parolaElemento.textContent = "Attendiamo l'inizio del Calendario dell'Avvento";
+            parolaElemento.classList.add('testo-attesa');  
+            
+        } else {
+            parolaElemento.textContent = "Il Calendario dell'Avvento è terminato. Buon Natale!";
+            parolaElemento.classList.add('testo-attesa');  
+        }
+    }
+    
+    // Funzione per aggiornare il timer
+    function aggiornaCountdown() {
+        const oraCorrente = new Date();
+        let dataTarget = null;
+        const annoCorrente = oraCorrente.getFullYear();
+        const mese = oraCorrente.getMonth();
+        const giorno = oraCorrente.getDate();
         
-        // Funzione principale per mostrare la parola
-        function mostraParolaDelGiorno() {
-            const oggi = new Date();
-            const mese = oggi.getMonth();
-            const giorno = oggi.getDate();
-
-            parolaElemento.classList.remove('testo-attesa');
-            parolaElemento.classList.remove('text-secondary'); 
-
-            if (mese === 11 && giorno >= 1 && giorno <= 24) {
-                const indiceParola = giorno - 1;
-                parolaElemento.textContent = elencoParole[indiceParola];
-                
-            } else if (mese < 11) {
-                parolaElemento.textContent = "Attendiamo l'inizio del Calendario dell'Avvento";
-                parolaElemento.classList.add('testo-attesa'); 
-                
+        let annoTarget = annoCorrente;
+        if (mese === 0 || (mese === 11 && giorno > 24)) {  
+            annoTarget++;
+        }
+        
+        if (mese < 11) {  
+            dataTarget = new Date(annoCorrente, 11, 1, 0, 0, 0, 0);  
+            timerMessaggio.textContent = "Inizio evento in:";
+        } else if (giorno >= 1 && giorno <= 23) {  
+            dataTarget = new Date(oraCorrente);
+            dataTarget.setDate(dataTarget.getDate() + 1);
+            dataTarget.setHours(0, 0, 0, 0);  
+            timerMessaggio.textContent = "Prossima parola in:";
+        } else if (giorno === 24) {  
+            dataTarget = new Date(annoCorrente, 11, 25, 0, 0, 0, 0);  
+            timerMessaggio.textContent = "Fine evento in:";
+        } else {  
+            dataTarget = new Date(annoTarget, 11, 1, 0, 0, 0, 0);  
+            timerMessaggio.textContent = "Prossimo Avvento in:";
+            
+            if (dataTarget.getFullYear() > annoCorrente) {
             } else {
-                parolaElemento.textContent = "Il Calendario dell'Avvento è terminato. Buon Natale!";
-                parolaElemento.classList.add('testo-attesa'); 
+                timerMessaggio.textContent = "Evento concluso.";
+                timerElemento.textContent = "";
+                timerContenitore.classList.add('d-none');
+                return;
             }
         }
         
-        // Funzione per aggiornare il timer
-        function aggiornaCountdown() {
-            const oraCorrente = new Date();
-            let dataTarget = null;
-            const annoCorrente = oraCorrente.getFullYear();
-            const mese = oraCorrente.getMonth();
-            const giorno = oraCorrente.getDate();
-            
-            let annoTarget = annoCorrente;
-            if (mese === 0 || (mese === 11 && giorno > 24)) { 
-                annoTarget++;
-            }
-            
-            if (mese < 11) { 
-                dataTarget = new Date(annoCorrente, 11, 1, 0, 0, 0, 0); 
-                timerMessaggio.textContent = "Inizio evento in:";
-            } else if (giorno >= 1 && giorno <= 23) { 
-                dataTarget = new Date(oraCorrente);
-                dataTarget.setDate(dataTarget.getDate() + 1);
-                dataTarget.setHours(0, 0, 0, 0); 
-                timerMessaggio.textContent = "Prossima parola in:";
-            } else if (giorno === 24) { 
-                dataTarget = new Date(annoCorrente, 11, 25, 0, 0, 0, 0); 
-                timerMessaggio.textContent = "Fine evento in:";
-            } else { 
-                dataTarget = new Date(annoTarget, 11, 1, 0, 0, 0, 0); 
-                timerMessaggio.textContent = "Prossimo Avvento in:";
-                
-                if (dataTarget.getFullYear() > annoCorrente) {
-                } else {
-                    timerMessaggio.textContent = "Evento concluso.";
-                    timerElemento.textContent = "";
-                    timerContenitore.classList.add('d-none');
-                    return;
-                }
-            }
-            
-            const tempoRimanenteMs = dataTarget.getTime() - oraCorrente.getTime();
+        const tempoRimanenteMs = dataTarget.getTime() - oraCorrente.getTime();
 
-            if (tempoRimanenteMs < 0) {
+        if (tempoRimanenteMs < 0) {
+            mostraParolaDelGiorno();
+            mostraArchivioParole(); // Aggiorna archivio al cambio di giorno
+            aggiornaCountdown();
+            return;
+        }
+
+        const formattaTempo = (t) => String(t).padStart(2, '0');
+
+        const giorni = Math.floor(tempoRimanenteMs / (1000 * 60 * 60 * 24));
+        const ore = Math.floor((tempoRimanenteMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minuti = Math.floor((tempoRimanenteMs % (1000 * 60 * 60)) / (1000 * 60));
+        const secondi = Math.floor((tempoRimanenteMs % (1000 * 60)) / 1000);
+
+        let timerString;
+        if (giorni > 0) {
+            timerString = `${giorni}g ${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
+        } else {
+            timerString = `${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
+        }
+        
+        timerElemento.textContent = timerString;
+        timerContenitore.classList.remove('d-none');
+        
+        if (tempoRimanenteMs < 1000) {
+            setTimeout(() => {
                 mostraParolaDelGiorno();
                 mostraArchivioParole(); // Aggiorna archivio al cambio di giorno
-                aggiornaCountdown();
-                return;
-            }
-
-            const formattaTempo = (t) => String(t).padStart(2, '0');
-
-            const giorni = Math.floor(tempoRimanenteMs / (1000 * 60 * 60 * 24));
-            const ore = Math.floor((tempoRimanenteMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minuti = Math.floor((tempoRimanenteMs % (1000 * 60 * 60)) / (1000 * 60));
-            const secondi = Math.floor((tempoRimanenteMs % (1000 * 60)) / 1000);
-
-            let timerString;
-            if (giorni > 0) {
-                timerString = `${giorni}g ${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
-            } else {
-                timerString = `${formattaTempo(ore)}h ${formattaTempo(minuti)}m ${formattaTempo(secondi)}s`;
-            }
-            
-            timerElemento.textContent = timerString;
-            timerContenitore.classList.remove('d-none');
-            
-            if (tempoRimanenteMs < 1000) {
-                setTimeout(() => {
-                    mostraParolaDelGiorno();
-                    mostraArchivioParole(); // Aggiorna archivio al cambio di giorno
-                    aggiornaCountdown(); 
-                }, 1000);
-            }
+                aggiornaCountdown();  
+            }, 1000);
         }
+    }
+    
+    // 🚨 FUNZIONE: Genera l'archivio delle parole uscite 🚨
+    function mostraArchivioParole() {
+        const oggi = new Date();
+        const mese = oggi.getMonth();
+        const giorno = oggi.getDate();
         
-        // 🚨 FUNZIONE: Genera l'archivio delle parole uscite 🚨
-        function mostraArchivioParole() {
-            const oggi = new Date();
-            const mese = oggi.getMonth();
-            const giorno = oggi.getDate();
-            
-            const archivioElemento = document.getElementById('archivio-parole');
-            const elencoElemento = document.getElementById('elenco-parole-passate');
-            
-            // Nascondi l'archivio se non siamo a dicembre o se è solo il 1°
-            if (mese !== 11 || giorno <= 1)  {
-                archivioElemento.style.display = 'none';
-                return;
-            } 
-            
-            archivioElemento.style.display = 'block'; 
-            elencoElemento.innerHTML = ''; 
-            
-            // Determina fino a che giorno mostrare (giorno precedente a oggi)
-            const giornoMax = giorno - 1; 
-            
-            for (let i = 0; i < giornoMax; i++) {
-                const data = i + 1; 
-                const parola = elencoParole[i];
-                    if (i > 23) {
-                        break;}
-                
-                // Formatta la data
-                const dataStr = new Date(oggi.getFullYear(), 11, data).toLocaleDateString('it-IT', {
-                    day: 'numeric',
-                    month: 'long'
-                });
-                
-                const item = document.createElement('div');
-                item.classList.add('parola-passata');
-                item.innerHTML = `${dataStr}: <strong>${parola}</strong>`;
-                
-                elencoElemento.appendChild(item);
-            }
-        }
+        const archivioElemento = document.getElementById('archivio-parole');
+        const elencoElemento = document.getElementById('elenco-parole-passate');
         
-        // Funzione di controllo neve
-        function shouldSnow() {
-            const oggi = new Date();
-            const mese = oggi.getMonth();
-            const giorno = oggi.getDate();
-            
-            return (mese === 11 && giorno >= 1);
-        }
+        // Nascondi l'archivio se non siamo a dicembre o se è solo il 1°
+        if (mese !== 11 || giorno <= 1)  {
+            archivioElemento.style.display = 'none';
+            return;
+        }  
         
-        // INIZIALIZZAZIONE
-        mostraParolaDelGiorno();
-        mostraArchivioParole(); // Chiama la funzione per inizializzare lo stato
-        setInterval(aggiornaCountdown, 1000);
-        aggiornaCountdown();
-
-        // ❄️ Logica per la Neve che Cade con Vento (CONDIZIONALE) ❄️
-        if (shouldSnow()) {
-            const snowContainer = document.getElementById('snow-container');
-            const numSnowflakes = 200; 
-
-            for (let i = 0; i < numSnowflakes; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.innerHTML = '❄'; 
-
-                snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.top = `${-1 * (Math.random() * 10 + 5)}%`; 
-
-                snowflake.style.animationDuration = `${Math.random() * 3 + 5}s, ${Math.random() * 5 + 3}s`; 
-                snowflake.style.animationDelay = `${Math.random() * 5}s`; 
-                snowflake.style.fontSize = `${Math.random() * 0.8 + 0.6}em`; 
-                snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`; 
-
-                snowContainer.appendChild(snowflake);
-            }
+        archivioElemento.style.display = 'block';  
+        elencoElemento.innerHTML = '';  
+        
+        // Determina fino a che giorno mostrare (giorno precedente a oggi)
+        const giornoMax = giorno - 1;  
+        
+        for (let i = 0; i < giornoMax; i++) {
+            const data = i + 1;  
+            const parola = elencoParole[i];
+                if (i > 23) {
+                    break;}
+            
+            // Formatta la data
+            const dataStr = new Date(oggi.getFullYear(), 11, data).toLocaleDateString('it-IT', {
+                day: 'numeric',
+                month: 'long'
+            });
+            
+            const item = document.createElement('div');
+            item.classList.add('parola-passata');
+            item.innerHTML = `${dataStr}: <strong>${parola}</strong>`;
+            
+            elencoElemento.appendChild(item);
         }
-    </script> 
+    }
+    
+    // Funzione di controllo neve
+    function shouldSnow() {
+        const oggi = new Date();
+        const mese = oggi.getMonth();
+        const giorno = oggi.getDate();
+        
+        return (mese === 11 && giorno >= 1);
+    }
+    
+    // --- NUOVO: LOGICA MODALE DI AVVISO ---
+    const avvisoModal = document.getElementById('avviso-modal');
+    const continuaBtn = document.getElementById('continua-btn');
+    const nonMostrarePiuCheckbox = document.getElementById('non-mostrare-piu');
+    // Chiave univoca per salvare la preferenza nel browser (localStorage)
+    const STORAGE_KEY = 'modal_avviso_calendario_nascosto';
+
+    // 1. Controlla lo stato in localStorage all'avvio
+    if (localStorage.getItem(STORAGE_KEY) !== 'true') {
+        avvisoModal.style.display = 'block';
+    }
+
+    // 2. Logica al click del pulsante 'Continua'
+    continuaBtn.addEventListener('click', function() {
+        // Se la checkbox è selezionata, salva la preferenza
+        if (nonMostrarePiuCheckbox.checked) {
+            localStorage.setItem(STORAGE_KEY, 'true');
+        }
+        // Nascondi il modal
+        avvisoModal.style.display = 'none';
+    });
+    // --- FINE LOGICA MODALE ---
+    
+    // INIZIALIZZAZIONE (il resto della logica del sito)
+    mostraParolaDelGiorno();
+    mostraArchivioParole(); // Chiama la funzione per inizializzare lo stato
+    setInterval(aggiornaCountdown, 1000);
+    aggiornaCountdown();
+
+    // ❄️ Logica per la Neve che Cade con Vento (CONDIZIONALE) ❄️
+    if (shouldSnow()) {
+        const snowContainer = document.getElementById('snow-container');
+        const numSnowflakes = 200;  
+
+        for (let i = 0; i < numSnowflakes; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';  
+
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.top = `${-1 * (Math.random() * 10 + 5)}%`;  
+
+            snowflake.style.animationDuration = `${Math.random() * 3 + 5}s, ${Math.random() * 5 + 3}s`;  
+            snowflake.style.animationDelay = `${Math.random() * 5}s`;  
+            snowflake.style.fontSize = `${Math.random() * 0.8 + 0.6}em`;  
+            snowflake.style.opacity = `${Math.random() * 0.5 + 0.5}`;  
+
+            snowContainer.appendChild(snowflake);
+        }
+    }
+</script>  
 </body>
 </html>
