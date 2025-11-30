@@ -271,7 +271,7 @@
         .modal-content p {
             font-size: 1.1em;
             color: #555; 
-            margin-bottom: 0px;
+            margin-bottom: 25px;
         }
 
         /* Azioni (Continua e Checkbox) - Orientamento Verticale */
@@ -282,10 +282,8 @@
             align-items: center;
             margin-top: 15px;
         }
-
-        #parola-codice-sblocco:hover {
-            opacity: 0.7;
-        }
+        
+        /* [RIMOSSO: Stile #parola-codice-sblocco] */
 
 
         #continua-btn {
@@ -317,25 +315,7 @@
             margin-right: 5px;
         }
 
-        /* 🚨 MODIFICATO: Stile per il TESTO del Codice (non più un riquadro) 🚨 */
-        #codice-overlay { 
-            display: none; /* Nascosto di default */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000; /* Valore molto alto: DAVANTI A TUTTO */
-            text-align: center;
-            
-            /* Stile per rendere il numero molto grande */
-            font-size: 15em; /* Molto grande! */
-            color: var(--colore-oro-natale); 
-            font-family: var(--font-principale);
-            font-weight: 700;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.9), 0 0 10px white;
-            line-height: 1;
-            padding: 20px;
-        }
+        /* [RIMOSSO: Stile #codice-overlay] */
 
         /* --- FINE STILE MODAL --- */
     </style>
@@ -348,7 +328,6 @@
             <p>Ogni giorno su questo sito uscirà una parola nuova, e tu dovrai aprire la casella corrispondente e ricordati che in caso dovesse esserci qualche frase detro la casella si deve sempre leggere per prima remember this baby</p>
             
             <div class="modal-actions">
-                
                 <button id="continua-btn">Continua</button>
                 <label class="non-mostrare-label">
                     <input type="checkbox" id="non-mostrare-piu">
@@ -357,7 +336,6 @@
             </div>
         </div>
     </div>
-    
     <div id="background-fixed-wrapper">
     <div id="snow-container"></div>
     </div>
@@ -397,10 +375,10 @@
     // Logica JavaScript del Calendario dell'Avvento
     const elencoParole = [
         "$$", "Palle", "Nduja", "Omi", "Tiramisù",
-        "Will", "Negro", "Pisello", "Baby", "10",
-        "Pipistello", "10.3-8.2-3.1-7.1-4.1", "vinted", "Cestista", "Stipendio",
-        "Cibo", "Esame", "Young", "Topina", "Orsi",
-        "Bro", "Gitano", "Last", "Duate"
+        "Will", "Nigga", "Young", "Baby", "Pisello",
+        "", "10.3-8.2-3.1-7.1-4.1", "", "", "Stipendio",
+        "", "Topina", "18", "", "Orsi",
+        "", "", "", "Duate"
     ];
 
     const parolaElemento = document.getElementById('parola-del-giorno');
@@ -557,8 +535,7 @@
     const avvisoModal = document.getElementById('avviso-modal');
     const continuaBtn = document.getElementById('continua-btn');
     const nonMostrarePiuCheckbox = document.getElementById('non-mostrare-piu');
-    const parolaCodiceSblocco = document.getElementById('parola-codice-sblocco'); 
-    const codiceOverlay = document.getElementById('codice-overlay'); // RIFERIMENTO AL NUOVO ELEMENTO
+    // Riferimenti al codice segreto RIMOOSSI
     const STORAGE_KEY = 'modal_avviso_calendario_nascosto';
 
     // 1. Controlla lo stato in localStorage all'avvio
@@ -572,21 +549,10 @@
             localStorage.setItem(STORAGE_KEY, 'true');
         }
         avvisoModal.style.display = 'none';
-        codiceOverlay.style.display = 'none'; // Nascondi l'overlay del codice
+        // Nascondi overlay codice RIMOOSSO
     });
 
-    // 3. Logica al click della parola "Codice" (SBLOCCO)
-    parolaCodiceSblocco.addEventListener('click', function(e) {
-        e.preventDefault(); 
-        
-        codiceOverlay.style.display = 'block'; // Mostra il numero grande SOPRA il modale
-        
-        // Nasconde il codice dopo 3 secondi (3000 ms)
-        setTimeout(() => {
-             codiceOverlay.style.display = 'none';
-             // Il modale di avviso rimane visibile
-        }, 3000); 
-    });
+    // 3. Logica al click della parola "Codice" RIMOOSSA
 
     // --- FINE LOGICA MODALE ---
     
